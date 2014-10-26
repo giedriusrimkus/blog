@@ -1,0 +1,2 @@
+== README
+Giedrius's weblog.

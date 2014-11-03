@@ -1,0 +1,19 @@
+<div id="post_content">
+	<h1 class="title">
+		Title
+	</h1>
+
+	<p class="date">
+		
+		<% if user_signed_in? %>
+		<p>Buttonai</p>
+		<% end %>
+	</p>
+	<p class="body">
+	<%= render 'comments/edit' %>
+	</p>
+	<div id="comments">
+		<h2>Comments</h2>
+		<h3>Add a comment:</h3>
+	</div>
+</div>

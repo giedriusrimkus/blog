@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
 
+	def new
+		@comment = Comment.new
+	end
+
 	def create
 		@post = Post.find(params[:post_id])
 		@comment = @post.comments.create(params[:comment].permit(:name, :body))
@@ -15,19 +19,25 @@ class CommentsController < ApplicationController
 	end
 
 	def edit
-		@post = Post.find(params[:id])
+		@post = Post.find(params[:post_id])
 		@comment = @post.comments.find(params[:id])
 	end
 
 	def update
-		@post = Post.find(params[:id])
+		@post = Post.find(params[:post_id])
 		@comment = @post.comments.find(params[:id])
 
-		if @comment.update(params[:post].permit(:name, :body))
-			redirect_to @comment
+		if @comment.update(comments_params)
+			redirect_to post_path(@post)
 		else
 			render 'edit'
 		end
+	end
+	
+	private
+
+	def comments_params
+		params.require(:comment).permit(:name, :body)
 	end
 
 end

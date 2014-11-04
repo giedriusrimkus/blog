@@ -6,13 +6,15 @@
 	</div>
 
 	<% if user_signed_in? %>
+		<div>
 		<p><%= link_to 'Delete', [comment.post, comment],
 						method: :delete,
 						class: "button",
 						data: { confirm: "Are you sure?" } %>
 		</p>
-		<p><%= link_to 'Edit', [comment.post, comment],
+		<p><%= link_to 'Edit',  edit_post_comment_path(@post, comment),
 								class: "button" %>
 		</p>
+	</div>
 	<% end %>
 </div>

@@ -13,14 +13,16 @@ class PostsController < ApplicationController
 		@post = Post.new(post_params)
 
 		if @post.save
-		redirect_to @post
+			flash[:success] = "Your post has been successfully submitted!"
+			redirect_to @post
 		else
 			render 'new'
 		end
 	end
 
 	def show
-		@post = Post.find(params[:id]) 
+		@post = Post.find(params[:id])
+		# @comment = @post.comments.build
 	end
 
 	def edit

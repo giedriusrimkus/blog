@@ -7,8 +7,22 @@ class CommentsController < ApplicationController
 	def create
 		@post = Post.find(params[:post_id])
 		@comment = @post.comments.create(params[:comment].permit(:name, :body))
-	
 		redirect_to post_path(@post)
+		
+		# if @comment.errors.any?
+  		#	render 'new'
+		# else
+  		#	redirect_to @post
+		# end
+
+		#if @comment.save
+      	#	flash[:success] = "Your comment has been succesfully submited! Thank you."
+      	#	redirect_to post_path(@post)
+    	#else
+    	#	flash[:failure] = "Oops... "
+    		# render 'new'
+      	#	redirect_to post_path(@post)
+    	#end
 	end
 
 	def destroy

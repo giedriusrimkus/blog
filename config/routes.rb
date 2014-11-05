@@ -12,4 +12,3 @@ Blog::Application.routes.draw do
 		get "/admin" => "devise/sessions#new"
 	end
 end
-

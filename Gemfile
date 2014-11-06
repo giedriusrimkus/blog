@@ -34,6 +34,7 @@ end
 
 gem 'devise', '~> 3.3.0' # users 
 gem 'tinymce-rails' # rich text for posts
+gem 'friendly_id' # user-friendly URLs
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

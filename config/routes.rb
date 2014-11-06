@@ -7,6 +7,7 @@ Blog::Application.routes.draw do
 
 	root "posts#index"
 	get '/about', to: 'pages#about'
+	get '/contact', to: 'pages#contact'
 
 	devise_scope :user do
 		get "/admin" => "devise/sessions#new"

@@ -17,10 +17,11 @@
 
 	<p>
 		<%= f.label :body %><br>
-		<%= f.text_area :body %>
+		<%= raw f.text_area :body, class: "tinymce" %>
 	</p>
 
 	<p>
 		<%= f.submit %>
 	</p>
 	<% end %>
+	<%= tinymce %>

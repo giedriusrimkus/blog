@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107085629) do
+ActiveRecord::Schema.define(version: 20141107131259) do
 
   create_table "comments", force: true do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20141107085629) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.string   "author"
   end
 
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true

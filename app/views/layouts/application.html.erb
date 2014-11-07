@@ -69,11 +69,10 @@
 
 				<div class="buttons">
 					<% if current_user.try(:admin?)  %>
-					<button class="button"><%= link_to "New Post", new_post_path %></button> <% end %>
-					
+					<button class="button"><span class="glyphicon glyphicon-file"></span> <%= link_to "New Post", new_post_path %></button> <% end %>
 					<% if user_signed_in?  %>
-					<button class="button"><%= link_to "Profile", edit_user_registration_path %></button>
-					<button class="button"><%= link_to "Logout", destroy_user_session_path, :method => :delete %></button>
+					<button class="button"><span class="glyphicon glyphicon-user"></span> <%= link_to "Profile", edit_user_registration_path %></button>
+					<button class="button"><span class="glyphicon glyphicon-off"></span> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></button>
 				<% end %>
 				</div>
 		</div>

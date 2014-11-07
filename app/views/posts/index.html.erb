@@ -1,14 +1,10 @@
 <% @posts.each do |post| %>
 <div class="post_wrapper">
 	<h2 class="title"><%= link_to post.title, post %></h2>
-	<p class="date"><%= post.created_at.strftime("%B, %d, %Y") %></p>
+	<p class="date_and_author"><%= post.created_at.strftime("%B, %d, %Y") %></p>
 	<p class="body"><%= raw post.body %></p>
-	<p class="number_of_comments">
-	Comments
-
-	</p>
-
-	<p="tags"><span class="glyphicon glyphicon-tags"> <%= raw post.tag_list.map { |tag| link_to tag, tag_path(tag) }.join(', ') %></p>
+	<p class="number_of_comments"></p>
+	<p class="tags"><span class="glyphicon glyphicon-tags">&nbsp;</span><%= raw post.tag_list.map { |tag| link_to tag, tag_path(tag) }.join(', ') %></p>
 </div>
 <% end %>
 

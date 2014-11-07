@@ -19,7 +19,10 @@
 		<%= f.label :body %><br>
 		<%= raw f.text_area :body, class: "tinymce" %>
 	</p>
-
+	<p>
+		<%= f.label :tags, "Tags (separated by commas)" %><br>
+		<%= f.text_field :tag_list %>
+	</p>
 	<p>
 		<%= f.submit %>
 	</p>

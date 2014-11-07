@@ -249,3 +249,29 @@ color: #33acb7;
 
 /* Pagination styling */
 
+.pagination > li > a:hover, .pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+  color: #565e66;
+  background-color: #eeeeee;
+  border-color: #dddddd;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: white;
+  background-color: #5f6b75;
+  border-color: #c1c5c9;
+  cursor: default;
+}
+
+#tag_cloud {
+	width: 200px;
+	line-height: 1.6em; 
+    .s { font-size: 0.8em; }
+	.m { font-size: 1.2em; }
+	.l { font-size: 1.8em; }
+}

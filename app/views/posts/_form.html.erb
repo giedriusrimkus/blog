@@ -1,7 +1,7 @@
 <%= form_for @post do |f| %>
 	
 	<% if @post.errors.any? %>
-		<div id="errors">
+		<div class="alert alert-danger" role="alert">
 			<h2><%= pluralize(@post.errors.count, "error") %> prevented this from saving:</h2>
 			<ul>
 				<% @post.errors.full_messages.each do |msg| %>
@@ -10,6 +10,8 @@
 			</ul>
 		</div>
 	<% end %>
+	<div class="row">
+  	<div class="">
 	<p>
 		<%= f.label :title %><br>
 		<%= f.text_field :title %>
@@ -27,7 +29,9 @@
 		<%= f.text_field :tag_list %>
 	</p>
 	<p>
-		<%= f.submit %>
+		<%= f.submit "Submit Post", class: "" %>
 	</p>
+	</div>
+	</div>
 	<% end %>
 	<%= tinymce %>

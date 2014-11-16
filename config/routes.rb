@@ -13,4 +13,7 @@ Blog::Application.routes.draw do
 	devise_scope :user do
 		get "/admin" => "devise/sessions#new"
 	end
+
+	match '/contacts',     to: 'contacts#new',             via: 'get'
+	resources "contacts", only: [:new, :create]
 end

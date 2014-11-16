@@ -17,6 +17,9 @@ gem 'friendly_id'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'mail_form'
+gem 'simple_form'
+
 
 group :doc do # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

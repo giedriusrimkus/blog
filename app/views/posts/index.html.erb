@@ -1,10 +1,19 @@
 <% @posts.each do |post| %>
 <div class="post_wrapper">
 	<h2 class="title"><%= link_to post.title, post %></h2>
-	<p class="date_and_author"><%= post.created_at.strftime("%B, %d, %Y") %></p>
+	<p class="date_and_author"><span class="glyphicon glyphicon-time"></span>
+	<%= post.created_at.strftime("%B, %d, %Y") %>
+	<% if post.author? %>&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-user"></span>
+    <%= post.author  %> 
+    <% end %> 
+    &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span> Comments: <%= link_to post.comments.count, post_path(post, anchor: "show-comments") %></a>
+	</p>
 	<p class="body"><%= raw post.body %></p>
 	<p class="number_of_comments"></p>
+	<% if post.tag_list.any? %>
 	<p class="tags"><span class="glyphicon glyphicon-tags">&nbsp;</span><%= raw post.tag_list.map { |tag| link_to tag, tag_path(tag) }.join(', ') %></p>
+	<% end %>
 </div>
 <% end %>
 

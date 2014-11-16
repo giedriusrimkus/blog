@@ -14,15 +14,6 @@
 <![endif]-->
 
 <style>
-
-#tag_cloud {
-	width: 200px;
-	line-height: 1.6em;
-	.s { font-size: 0.8em; }
-	.m { font-size: 1.2em; }
-	.l { font-size: 1.8em; }
-}
-
 </style>
 </head>
 <body>
@@ -32,18 +23,27 @@
 			<%= image_tag "logo.png" %>
 			<% end %>
 			<p> </p>
-			<li class="category">Website</li>
-			<li><%= link_to "Home", root_path %></li>
-			<li><%= link_to "About", about_path %></li>
-			<li><%= link_to "Contacts", contact_path %></li>
+			<!-- <li class="category">Website</li> -->
+			<li><%= link_to root_path do %>
+				<span class="glyphicon glyphicon-home"></span>&nbsp;Home
+				<% end %>
+			</li>
+			<li><%= link_to about_path do %>
+				<span class="glyphicon glyphicon-user"></span>&nbsp;About
+				<% end %>
+			</li>
+			<li><%= link_to contacts_path do %>
+				<span class="glyphicon glyphicon-envelope"></span>&nbsp;Contacts
+				<% end %>
+			</li>
 		</ul>
 
-		<ul>
+		<!-- <ul>
 			<li class="category">Social</li>
 			<li>Facebook</li>
 			<li>Twitter</li>
 			<li>Github</li>
-		</ul>
+		</ul> 
 		<ul>
 			<li class="category"></span> Tags</li>
 			<li><div class="tag_cloud">
@@ -53,7 +53,7 @@
 			<% end %>
 			</p>
 			</div></li>
-		</ul>
+		</ul>-->
 	</div>
 
 	<div id="main_content">
@@ -76,13 +76,8 @@
 				<% end %>
 				</div>
 		</div>
-
-		<% flash.each do |name, msg| %>
-		<%= content_tag(:div, msg, class: "alert") %>
-		<% end %>
-
+		<%= render 'posts/flash' %>
 		<%= yield %>
-
 	</div>
 
 </body>

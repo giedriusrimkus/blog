@@ -14,4 +14,12 @@ class Post < ActiveRecord::Base
 	def should_generate_new_friendly_id?
 		new_record?
 	end
+
+	def previous_post
+  		self.class.first(:conditions => ["created_at < ?", created_at], :order => "created_at desc")
+	end
+
+	def next_post
+  		self.class.first(:conditions => ["created_at > ?", created_at], :order => "created_at asc")
+	end
 end

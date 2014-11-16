@@ -2,35 +2,48 @@
 	<h1 class="title">
 		<%= @post.title %>
 	</h1>
+	
+	<p class="date_and_author"><span class="glyphicon glyphicon-time"></span>
+	<%= @post.created_at.strftime("%B, %d, %Y") %>
+	<% if @post.author? %>&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-user"></span>
+    <%= @post.author %> 
+    <% end %> 
+    &nbsp;&nbsp;<span class="glyphicon glyphicon-comment"></span>&nbsp;Comments: <a href="#show-comments"><%= @post.comments.count %></a>
+	</p>
+	
 	<% if current_user.try(:admin?) %>
 		<div class="buttons">
-			<button class="button">
-			<span class="glyphicon glyphicon-edit"></span> <%= link_to 'Edit', edit_post_path(@post) %></button>
-			<button class="button"> 
-			<span class="glyphicon glyphicon-remove"></span> <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+			<button class="btn btn-primary">
+			<span class="glyphicon glyphicon-edit"></span>&nbsp;<%= link_to ' Edit  ', edit_post_path(@post) %></button>
+			<button class="btn btn-danger"> 
+			<span class="glyphicon glyphicon-remove"></span>&nbsp;<%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
 			</button>
 		</div>
 	<% end %>
-	<p class="date_and_author"><span class="glyphicon glyphicon-time"></span>
-	Submitted <%= time_ago_in_words(@post.created_at) %> ago</p>
-	<% if @post.author? %>
-	<p class="date_and_author">
-    <span class="glyphicon glyphicon-user"></span>
-    <%= @post.author  %>
-    <% end %>
-	</p>
-	
+
 	<p class="body">
 		<%=raw @post.body %>
 	</p>
 	<% if @post.tag_list.any? %>
 	<p class="tags"><span class="glyphicon glyphicon-tags">&nbsp;</span><%=raw @post.tag_list.map { |tag| link_to tag, tag_path(tag) }.join(', ') %></p>
 	<% end %>
+
+	<nav>
+	  <ul class="pager">
+	  	<li class="previous">
+			<%= link_to("Previous Post" , @post.previous_post) if @post.previous_post %></li>
+	  	<li class="next">
+		<%= link_to("Next Post", @post.next_post) if @post.next_post %></li>
+		</ul>
+	</nav>
+
 	<div id="comments">
-		<h3>Comments & Amendments ( <%= @post.comments.count %> )</h3>
+		<h3><a id="show-comments">Comments & Amendments ( <%= @post.comments.count %> )</a></h3>
 		<%= render @post.comments %>
 		<h3>What's on your mind?</h3>
 		<br>
 		<%= render "comments/form" %>
 	</div>
 </div>
+

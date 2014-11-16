@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 	def create
 		@post = Post.friendly.find(params[:post_id])
 		@comment = @post.comments.create(params[:comment].permit(:name, :body))
-		redirect_to post_path(@post)
+		# redirect_to post_path(@post)
 		
 		# if @comment.errors.any?
   		#	render 'new'
@@ -15,20 +15,21 @@ class CommentsController < ApplicationController
   		#	redirect_to @post
 		# end
 
-		#if @comment.save
-      	#	flash[:success] = "Your comment has been succesfully submited! Thank you."
-      	#	redirect_to post_path(@post)
-    	#else
-    	#	flash[:failure] = "Oops... "
-    		# render 'new'
-      	#	redirect_to post_path(@post)
-    	#end
+		if @comment.save
+      		flash[:success] = "Your comment has been succesfully submited! Thank you."
+      		redirect_to post_path(@post)
+    	else
+    		# flash[:danger] = "Oops... Something went wrong. Please try again."
+      		render 'new'
+      		# redirect_to post_path(@post)
+    	end
 	end
 
 	def destroy
 		@post = Post.friendly.find(params[:post_id])
 		@comment = @post.comments.find(params[:id])
 		@comment.destroy
+        flash[:success] = "Comment deleted."
 		redirect_to post_path(@post)
 	end
 
@@ -42,8 +43,10 @@ class CommentsController < ApplicationController
 		@comment = @post.comments.find(params[:id])
 
 		if @comment.update(comments_params)
-			redirect_to post_path(@post)
+			redirect_to post_url(@post)
+			flash[:success] = "Comment updated."
 		else
+			flash[:danger] = "Oops... Something went wrong."
 			render 'edit'
 		end
 	end

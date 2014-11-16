@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 			flash[:success] = "Your post has been successfully submitted!"
 			redirect_to @post
 		else
+			flash[:danger] = "Oops... Something went wrong. "
 			render 'new'
 		end
 	end
@@ -38,7 +39,9 @@ class PostsController < ApplicationController
 
 		if @post.update(params[:post].permit(:title, :body, :author, :tag_list))
 			redirect_to @post
+			flash[:success] = "Post has been updated."
 		else
+			flash[:danger] = "Oops... Something went wrong. "
 			render 'edit'
 		end
 	end
@@ -46,7 +49,7 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.friendly.find(params[:id])
 		@post.destroy
-
+		flash[:success] = "Post has been deleted."
 		redirect_to root_path
 	end
 
